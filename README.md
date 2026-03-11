@@ -59,4 +59,9 @@ Launch the Next.js development server:
 npm run dev
 ```
 
+*Note: If you run into Node versioning issues (Next.js requires >= 20.9), you can attempt a forced start by running:*
+```bash
+node ./node_modules/next/dist/bin/next dev
+```
+
 Navigate to [http://localhost:3000](http://localhost:3000)
