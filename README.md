@@ -36,14 +36,19 @@ npm install
 ```
 
 ### 3. Environment Variables
-To operate the AI Parsing Engine, you will need to add an API key. We have built support for both Groq (Free/Fast) and Anthropic (Highly precise). 
+To operate the AI Parsing Engine and the Database, you will need to set up your environment variables. 
 
-Create a `.env.local` file inside the `app/` directory:
+Copy the template provided:
 ```bash
-# Option 1 (Free & Fast)
+cp .env.example .env
+```
+Then, open the newly created `.env` file and add your Groq or Anthropic API key. The `DATABASE_URL` is pre-configured for a local SQLite database.
+
+```bash
+# Get a free key at https://console.groq.com
 GROQ_API_KEY=your_groq_api_key_here
 
-# Option 2 (Premium Accuracy)
+# (Optional) Get a key at https://console.anthropic.com
 ANTHROPIC_API_KEY=your_anthropic_api_key_here
 ```
 
