@@ -27,13 +27,12 @@ cd app
 npm install
 ```
 
-### 3. Environment Variables
-To operate the AI Parsing Engine and the Database, you will need to set up your environment variables. 
-
-We've provided a template file (`.env.example`) in the `app/` folder. Copy it to create your active environment file:
+Copy the template provided and rename it to `.env`:
 ```bash
 cp .env.example .env
 ```
+Alternatively, rename the file manually from `.env.example` to `.env`. 
+Then, add your **GROQ_API_KEY**. 
 Then, open the newly created `.env` file and add your **GROQ_API_KEY**. 
 
 > [!NOTE]

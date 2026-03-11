@@ -44,3 +44,4 @@ app/dev.db
 app/dev.db-journal
 
 everything-claude-code/
+.claude/
