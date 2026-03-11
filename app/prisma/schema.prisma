@@ -1,0 +1,97 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Trip {
+  id         String   @id @default(cuid())
+  title      String   @default("")
+  rawText    String
+  currency   String   @default("USD")
+  status     String   @default("DRAFT")
+  shareToken String   @unique
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  participants Participant[]
+  expenses     Expense[]
+  settlements  Settlement[]
+}
+
+model Participant {
+  id             String   @id @default(cuid())
+  tripId         String
+  name           String
+  normalizedName String
+  createdAt      DateTime @default(now())
+
+  trip          Trip                 @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  paidExpenses  Expense[]            @relation("Payer")
+  expenseShares ExpenseParticipant[]
+  paymentsFrom  Payment[]            @relation("PaymentFrom")
+  paymentsTo    Payment[]            @relation("PaymentTo")
+
+  @@unique([tripId, normalizedName])
+  @@index([tripId])
+}
+
+model Expense {
+  id             String   @id @default(cuid())
+  tripId         String
+  payerId        String
+  description    String
+  amountCents    Int
+  isLateAddition Boolean  @default(false)
+  createdAt      DateTime @default(now())
+
+  trip         Trip                 @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  payer        Participant          @relation("Payer", fields: [payerId], references: [id])
+  participants ExpenseParticipant[]
+
+  @@index([tripId])
+}
+
+model ExpenseParticipant {
+  expenseId     String
+  participantId String
+
+  expense     Expense     @relation(fields: [expenseId], references: [id], onDelete: Cascade)
+  participant Participant @relation(fields: [participantId], references: [id], onDelete: Cascade)
+
+  @@id([expenseId, participantId])
+}
+
+model Settlement {
+  id        String   @id @default(cuid())
+  tripId    String
+  version   Int
+  status    String   @default("ACTIVE")
+  createdAt DateTime @default(now())
+
+  trip     Trip      @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  payments Payment[]
+
+  @@unique([tripId, version])
+  @@index([tripId])
+}
+
+model Payment {
+  id           String    @id @default(cuid())
+  settlementId String
+  fromId       String
+  toId         String
+  amountCents  Int
+  status       String    @default("PENDING")
+  confirmedAt  DateTime?
+  createdAt    DateTime  @default(now())
+
+  settlement Settlement  @relation(fields: [settlementId], references: [id], onDelete: Cascade)
+  from       Participant @relation("PaymentFrom", fields: [fromId], references: [id])
+  to         Participant @relation("PaymentTo", fields: [toId], references: [id])
+
+  @@index([settlementId])
+}

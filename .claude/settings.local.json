@@ -1,0 +1,43 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git clone:*)",
+      "Bash(./install.sh typescript:*)",
+      "Bash(./install.sh golang:*)",
+      "Bash(mkdir -p ~/.claude/agents ~/.claude/commands ~/.claude/skills && cp agents/*.md ~/.claude/agents/ && cp commands/*.md ~/.claude/commands/ && cp -r skills/* ~/.claude/skills/ && echo \"Done\")",
+      "Bash(bash ~/.claude/skills/skill-stocktake/scripts/scan.sh 2>&1)",
+      "Bash(for skill:*)",
+      "Bash(do)",
+      "Bash(echo \"=== $skill ===\")",
+      "Read(//c/Users/Swajay/.claude/skills/$skill/**)",
+      "Bash(done)",
+      "Bash(npx create-next-app@latest app --typescript --tailwind --app --no-eslint --no-src-dir --import-alias \"@/*\" --yes 2>&1 | tail -5)",
+      "Bash(cd /c/Users/Swajay/Downloads/trade/trip-cost-settler/app && npm install prisma @prisma/client zod nanoid @anthropic-ai/sdk sonner 2>&1 | tail -5)",
+      "Bash(cd /c/Users/Swajay/Downloads/trade/trip-cost-settler/app && npm install -D vitest @vitejs/plugin-react @playwright/test @types/node 2>&1 | tail -5)",
+      "Bash(node --version && npm --version)",
+      "Bash(npm install:*)",
+      "Bash(node -e \"console.log\\(process.version\\)\" && which node && npm config get prefix)",
+      "Bash(npx prisma:*)",
+      "Bash(npx vitest:*)",
+      "Bash(find /c/Users/Swajay/Downloads/trade/trip-cost-settler/app/src -type f -name \"*.ts\" ! -path \"*/node_modules/*\" 2>/dev/null | sort)",
+      "Bash(npx tsc:*)",
+      "Bash(npm test:*)",
+      "Bash(cd C:/Users/Swajay/Downloads/trade/trip-cost-settler/app && npm run build 2>&1 | tail -30)",
+      "Bash(cd C:/Users/Swajay/Downloads/trade/trip-cost-settler/app && npm run build 2>&1)",
+      "Bash(which node:*)",
+      "Bash(cd C:/Users/Swajay/Downloads/trade/trip-cost-settler/app && node node_modules/.bin/next build 2>&1 | tail -40)",
+      "Bash(cd C:/Users/Swajay/Downloads/trade/trip-cost-settler/app && node node_modules/next/dist/bin/next build 2>&1 | tail -40)",
+      "Bash(cd C:/Users/Swajay/Downloads/trade/trip-cost-settler/app && node node_modules/next/dist/bin/next build 2>&1)",
+      "Bash(sleep 8 && curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3001/ 2>&1)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3001/trips/test123 && echo \"\" && curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3001/share/sometoken 2>&1)",
+      "Bash(curl -s http://localhost:3001/trips/test123 2>&1 | head -20)",
+      "Bash(pkill -f \"next dev\" 2>&1; echo \"killed\")",
+      "Bash(cd C:/Users/Swajay/Downloads/trade/trip-cost-settler/app && npx tsc --noEmit 2>&1 && npm test 2>&1 && node node_modules/next/dist/bin/next build 2>&1 | grep -E \"Route|✓|✗|error|Error\" | head -30)",
+      "Bash(cd C:/Users/Swajay/Downloads/trade/trip-cost-settler/app && node node_modules/next/dist/bin/next dev 2>&1)",
+      "Bash(taskkill /F /IM node.exe 2>&1; echo \"done\")",
+      "Bash(taskkill //F //IM node.exe 2>&1; echo \"done\")",
+      "Bash(node --version && nvm list 2>/dev/null || echo \"no nvm\" && where node)",
+      "Bash(taskkill //F //IM node.exe 2>/dev/null; echo \"done\")"
+    ]
+  }
+}
