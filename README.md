@@ -20,19 +20,25 @@ A full-stack Next.js application designed to settle completely unstructured, cha
 
 ## 🚀 Getting Started
 
-To run this application locally, ensure you have **Node.js >= 20.9.0** installed. Follow these steps:
+To run this application locally, ensure you have **Node.js >= 20.9.0** installed. 
 
-### 1. Prerequisites
-Clone the repository, CD into the `app` folder, and install the dependencies.
-
+### 1. Clone the repository
 ```bash
+git clone https://github.com/swajayresources/trip-cost-settler.git
+cd trip-cost-settler
+```
+
+### 2. Install dependencies
+CD into the `app` folder where the Next.js project lives and install.
+```bash
+cd app
 npm install
 ```
 
-### 2. Environment Variables
+### 3. Environment Variables
 To operate the AI Parsing Engine, you will need to add an API key. We have built support for both Groq (Free/Fast) and Anthropic (Highly precise). 
-Rename the `.env.example` (or create a new `.env.local` file) and place it at the root of the project with at least **one** of the following keys:
 
+Create a `.env.local` file inside the `app/` directory:
 ```bash
 # Option 1 (Free & Fast)
 GROQ_API_KEY=your_groq_api_key_here
@@ -41,17 +47,15 @@ GROQ_API_KEY=your_groq_api_key_here
 ANTHROPIC_API_KEY=your_anthropic_api_key_here
 ```
 
-### 3. Initialize the Database
+### 4. Initialize the Database
 This project uses Prisma with a local SQLite database for effortless onboarding without Docker.
-
 ```bash
 npx prisma db push
 npx prisma generate
 ```
 
-### 4. Run the App
+### 5. Run the App
 Launch the Next.js development server:
-
 ```bash
 npm run dev
 ```
